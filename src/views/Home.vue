@@ -7,6 +7,8 @@
 
 <script>
 // @ is an alias to /src
+
+// on importe le composant helloWorld et on l'integre dans la vue HOME
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {

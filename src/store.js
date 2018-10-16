@@ -3,14 +3,12 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import counter from './modules/Counter'
+
+// fonctionne avec le composant vuex voir sur internt la doc
 export default new Vuex.Store({
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
+  modules: {
+    counter: counter
   }
+  
 })

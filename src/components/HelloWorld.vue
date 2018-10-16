@@ -1,5 +1,16 @@
 <template>
   <div class="hello">
+    Exemple  avec le store:<br>
+    compteur = {{leCompteur}} /////
+
+    <v-btn @click="incrementerLeCompteur()">incrementer le compteur</v-btn>
+
+        compteur modifier : {{countHack}}
+    <br>
+    Exemple avec le composant direct<br>
+    <v-btn @click="nomFonction()">incrementer le total</v-btn>
+
+    total : {{total}}
     <h1>{{ msg }}</h1>
     <p>
       For guide and recipes on how to configure / customize this project,<br>
@@ -30,27 +41,57 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapGetters } from "vuex";
+
+// ceci est composant
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
     msg: String
+  },
+
+  // les donnees du composants
+  data() {
+    return {
+      total: 0
+    };
+  },
+  computed: {
+    ...mapGetters("counter", { leCompteur: "count", countHack: "countHack" }),
+    proprieteCalcule: function() {
+      // exemple propriete calcule
+      this.total = total + 25;
+    }
+  },
+  methods: {
+    // modules, {les actions }
+    ...mapActions("counter", { incrementerLeCompteur: "increment" }),
+    nomFonction: function() {
+      // exmeple methode
+      this.total++;
+    }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- scoped  ça permet de limiter le css à ce composant-->
 <style scoped lang="stylus">
-h3
-  margin 40px 0 0
+h3 {
+  margin: 40px 0 0;
+}
 
-ul
-  list-style-type none
-  padding 0
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-li
-  display inline-block
-  margin 0 10px
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
 
-a
-  color #42b983
+a {
+  color: #42b983;
+}
 </style>
