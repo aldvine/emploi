@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Statistique from './views/Statistique.vue'
+import Domaines from './views/Domaines.vue'
 // ne pas oublier les vues 
 Vue.use(Router)
 
@@ -23,11 +23,12 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
+
     {
-      path: '/Statistique',
-      name: 'Statistique',
+      path: '/Domaines',
+      name: 'Domaines',
      
-      component: Statistique
+      component: Domaines
     }
   ]
 })

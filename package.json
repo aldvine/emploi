@@ -7,14 +7,11 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "chart.js": "^2.7.2",
     "echarts": "^4.2.0-rc.2",
     "jsonpath-plus": "^0.16.0",
     "v-charts": "^1.18.0",
     "vue": "^2.5.17",
-    "vue-chartjs": "^3.4.0",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.2.9",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

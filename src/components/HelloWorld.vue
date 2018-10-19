@@ -3,12 +3,12 @@
     Exemple  avec le store:<br>
     compteur = {{leCompteur}} /////
 
-    <v-btn @click="incrementerLeCompteur()">incrementer le compteur</v-btn>
+    <button @click="incrementerLeCompteur()">incrementer le compteur</button>
 
         compteur modifier : {{countHack}}
     <br>
     Exemple avec le composant direct<br>
-    <v-btn @click="nomFonction()">incrementer le total</v-btn>
+    <button @click="nomFonction()">incrementer le total</button>
 
     total : {{total}}
     <h1>{{ msg }}</h1>
