@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Domaines from './views/Domaines.vue'
+import Evolution from './views/Evolution.vue'
 // ne pas oublier les vues 
 Vue.use(Router)
 
@@ -29,6 +30,13 @@ export default new Router({
       name: 'Domaines',
      
       component: Domaines
+    }
+,
+    {
+      path: '/Evolution',
+      name: 'Evolution',
+     
+      component: Evolution
     }
   ]
 })

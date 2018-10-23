@@ -17,7 +17,15 @@
             <div class="input-block">
                 <button @click="addData()">Ajouter les données</button>
             </div>
-            <ve-histogram v-if="chartData" :data="chartData" :settings="chartSettings"></ve-histogram>
+            <div class="input-block">
+                <button @click="reset()">Remise à zéro</button>
+            </div>
+            <div  v-if="chartData.rows.length >0">
+                <ve-histogram  :data="chartData" :settings="chartSettings"></ve-histogram>
+            </div>
+            <div v-else  class="graphique">
+                Pas de données sélectionnée
+            </div>
 
         </div>
     </div>
@@ -35,13 +43,17 @@ export default {
   components: {
   },
   data() {
+      
     return {
       formationsJson: formation_par_secteur,
       offresJson: offres_par_secteur,
       choixSecteurFormation: null,
       choixSecteurOffre: null,
       chartSettings: {},
-      chartData: null
+       chartData: {
+        columns: ["secteurs", "offres", "formations"],
+        rows: []
+      }
     };
   },
   computed: {
@@ -71,10 +83,7 @@ export default {
   methods: {
     addData() {
       this.chartSettings = {};
-      this.chartData = {
-        columns: ["secteurs", "offres", "formations"],
-        rows: []
-      };
+     
 
       let secteur =
         "offre: " +
@@ -119,6 +128,12 @@ export default {
         offres: total_offre,
         formations: total_formation
       });
+    },
+    reset(){
+        this.chartData= {
+        columns: ["secteurs", "offres", "formations"],
+        rows: []
+      }
     }
   }
 };
@@ -136,5 +151,9 @@ export default {
 .input-block select{
     max-width: 200px;
     text-align:center;
+}
+.graphique{
+    padding:5px;
+    border:2px solid black;
 }
 </style>
