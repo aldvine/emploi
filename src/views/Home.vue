@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <presentation />
   </div>
 </template>
 
@@ -9,12 +8,12 @@
 // @ is an alias to /src
 
 // on importe le composant helloWorld et on l'integre dans la vue HOME
-import HelloWorld from '@/components/HelloWorld.vue'
+import Presentation from '@/components/Presentation.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    Presentation
   }
 }
 </script>

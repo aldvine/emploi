@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <h2>Les offres d'emplois par domaine et les entrées en formations par domaine</h2>
+        <h2>Evolution des offres et demandeurs par trimestre et région</h2>
         <div class="input-block">
             <label for="offres">Choisir la région des offres: </label>
             <select id="offres" v-model="choixRegionDemandeurs">
@@ -44,10 +44,11 @@ export default {
       choixRegionDemandeurs: null,
       choixRegionOffres: null,
       chartSettings: {
+        stack: { sell: ["offres", "demandeurs"] },
         area: true
       },
       chartData: {
-        columns: ["date", "demandeurs", "offres"],
+        columns: ["date", "offres", "demandeurs"],
         rows: []
       }
     };
@@ -76,84 +77,114 @@ export default {
   },
   methods: {
     addData() {
-      this.chartSettings = {};
+      this.reset();
+  
 
       // calcul des offres
-      let total = 0;
+      let totalOffres = 0;
       let year = 0;
-      let counterYear = 1;
+      let counter = 1;
       let tabOffre = [];
+      let quarter = 0;
+
       this.offresJson.forEach(element => {
         let oldYear = year;
-        year = new Date(element.date).getFullYear();
-        if (oldYear == year) {
-          counterYear++;
+        let oldQuarter = quarter;
+        let date = new Date(this.toDateUS(element.date));
+        year = date.getFullYear();
+        quarter = this.getQuarter(date);
+        if (oldYear == year && oldQuarter == quarter) {
+          counter++;
           // augmentation du total
-          total =
-            total + Number(element[this.choixRegionOffres].replace(",", "."));
+          totalOffres =
+            totalOffres +
+            Number(element[this.choixRegionOffres].replace(",", "."));
         } else {
-          tabOffre.push({
-            annee: oldYear,
-            moyenne_mois: Math.round((total * 1000) / counterYear)
-          });
-          counterYear = 1;
-          total = Number(element[this.choixRegionOffres].replace(",", "."));
-        }
-      });
+          // dans le premier cas on l'ajoute pas dans la boucle.
+          if (oldYear != 0) {
+            // on multiplie par 1000 car c'est en millier
 
-      // moyenne par mois 
-    //   this.offresJson.forEach(element => {
-    //     let oldYear = year;
-    //     year = new Date(element.date).getFullYear();
-    //     if (oldYear == year) {
-    //       counterYear++;
-    //       // augmentation du total
-    //       total =
-    //         total + Number(element[this.choixRegionOffres].replace(",", "."));
-    //     } else {
-    //       tabOffre.push({
-    //         annee: oldYear,
-    //         moyenne_mois: Math.round((total * 1000) / counterYear)
-    //       });
-    //       counterYear = 1;
-    //       total = Number(element[this.choixRegionOffres].replace(",", "."));
-    //     }
-    //   });
-
-      console.log(tabOffre);
-      // on multiplie par 1000 car c'est en millier
-
-      //calcul des formations dans ce secteur
-      let total_formation = 0;
-      this.formationsJson.forEach(element => {
-        if (element.secteur == this.choixSecteurFormation) {
-          if (typeof element.Total == "number") {
-            total_formation += element.Total;
-          } else {
-            total_formation += Number(element.Total.split(" ").join(""));
+            tabOffre[oldYear + "T" + oldQuarter] = Math.round(
+              (totalOffres * 1000) / counter
+            );
           }
+          counter = 1;
+          totalOffres = Number(
+            element[this.choixRegionOffres].replace(",", ".")
+          );
         }
       });
-      this.chartData.rows.push({
-        secteurs: secteur,
-        offres: total_offre,
-        formations: total_formation
+      console.log("offre ", tabOffre);
+      // moyenne par an
+      //   this.offresJson.forEach(element => {
+      //     let oldYear = year;
+      //     year = new Date(element.date).getFullYear();
+      //     if (oldYear == year) {
+      //       counterYear++;
+      //       // augmentation du total
+      //       total =
+      //         total + Number(element[this.choixRegionOffres].replace(",", "."));
+      //     } else {
+      //       tabOffre.push({
+      //         annee: oldYear,
+      //         moyenne_mois: Math.round((total * 1000) / counterYear)
+      //       });
+      //       counterYear = 1;
+      //       total = Number(element[this.choixRegionOffres].replace(",", "."));
+      //     }
+      //   });
+
+      let totalDemandeurs = 0;
+      let tabDemandeur = [];
+      this.demandeursJson.forEach(element => {
+        tabDemandeur[element.Periode] = Number(
+          element[this.choixRegionDemandeurs].replace(/\s/g, "")
+        );
       });
+      console.log(tabDemandeur);
+
+      // on ajoute d'abord les offres
+      for (const key in tabOffre) {
+        tabOffre[key];
+        this.chartData.rows.push({
+          date: key,
+          offres: tabOffre[key],
+          demandeurs: null
+        });
+      }
+
+      for (const key in tabDemandeur) {
+        let trouve = false;
+        let i = 0;
+        do {
+          if (this.chartData.rows[i].date == key) {
+            trouve = true;
+            this.chartData.rows[i].demandeurs = tabDemandeur[key];
+          }
+          i++;
+        } while (!trouve && i < this.chartData.rows.length);
+      }
+      console.log(this.chartData.rows);
     },
     getQuarter(d) {
-      var q = [4, 1, 2, 3];
+      d = d || new Date(); // If no date supplied, use today
+      var q = [1, 2, 3, 4];
       return q[Math.floor(d.getMonth() / 3)];
+    },
+    toDateUS(date) {
+      date = date.split("/");
+      return date[2] + "-" + date[1] + "-" + date[0];
     },
     reset() {
       this.chartData = {
-        columns: ["secteurs", "offres", "formations"],
+        columns: ["date", "offres", "demandeurs"],
         rows: []
       };
     }
   }
 };
 </script>
-<style lang="css">
+<style scoped lang="css">
 .input-block {
   display: block;
   padding: 5px;
