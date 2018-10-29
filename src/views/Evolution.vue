@@ -4,21 +4,21 @@
         <h2>Evolution des offres et demandeurs par trimestre et région</h2>
         <div class="input-block">
             <label for="offres">Choisir la région des offres: </label>
-            <select id="offres" v-model="choixRegionDemandeurs">
+            <select class="custom-select" id="offres" v-model="choixRegionDemandeurs">
                 <option v-for="(d,index) in regionDemandeurs" :key="index" :value="d">{{d}}</option>
             </select>
         </div>
         <div class="input-block">
             <label for="formations">Choisir la région des demandeurs: </label>
-            <select if="formations" v-model="choixRegionOffres">
+            <select class="custom-select" if="formations" v-model="choixRegionOffres">
                 <option v-for="(d,index) in regionOffres" :key="index" :value="d">{{d}}</option>
             </select>
         </div>
         <div class="input-block">
-            <button @click="addData()">Ajouter les données</button>
+            <button class="btn btn-primary" @click="addData()">Ajouter les données</button>
         </div>
         <div class="input-block">
-            <button @click="reset()">Remise à zéro</button>
+            <button class="btn btn-info" @click="reset()">Remise à zéro</button>
         </div>
         <div class="graphique">
             <ve-line v-if="chartData" :data="chartData" :settings="chartSettings"></ve-line>
@@ -78,7 +78,6 @@ export default {
   methods: {
     addData() {
       this.reset();
-  
 
       // calcul des offres
       let totalOffres = 0;

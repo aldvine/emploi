@@ -4,21 +4,21 @@
         <h2>Comparaison des demandes par trimestre et région</h2>
         <div class="input-block">
             <label for="choixRegionDemandes1">Choisir la première région : </label>
-            <select if="choixRegionDemandes1" label="Choix région 1" v-model="choixRegionDemandes1">
+            <select class="custom-select" if="choixRegionDemandes1" label="Choix région 1" v-model="choixRegionDemandes1">
                 <option v-for="(d,index) in regionDemandes" :key="index" :value="d">{{d}}</option>
             </select>
         </div>
         <div class="input-block">
             <label for="choixRegionDemandes2">Choisir la deuxième région : </label>
-            <select if="choixRegionDemandes2" label="Choix région 2" v-model="choixRegionDemandes2">
+            <select class="custom-select" if="choixRegionDemandes2" label="Choix région 2" v-model="choixRegionDemandes2">
                 <option v-for="(d,index) in regionDemandes" :key="index" :value="d">{{d}}</option>
             </select>
         </div>
         <div class="input-block">
-            <button @click="addData()">Ajouter les données</button>
+            <button class="btn btn-primary" @click="addData()">Ajouter les données</button>
         </div>
         <div class="input-block">
-            <button @click="reset()">Remise à zéro</button>
+            <button class="btn btn-info" @click="reset()">Remise à zéro</button>
         </div>
         <div  v-if="chartData.rows.length >0">
             <ve-histogram  :data="chartData" :settings="chartSettings"></ve-histogram>

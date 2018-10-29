@@ -4,21 +4,21 @@
             <h2>Les offres d'emplois par domaine et les entrées en formations par domaine</h2>
             <div class="input-block"> 
                 <label for="offres">Secteur d'offres: </label>
-                <select id="offres" label="Secteur offres d'emploi" v-model="choixSecteurOffre">
+                <select class="custom-select" id="offres" label="Secteur offres d'emploi" v-model="choixSecteurOffre">
                     <option v-for="(secteur,index) in secteurOffres" :key="index" :value="secteur">{{secteur}}</option>
                 </select>
             </div>
             <div class="input-block">
                 <label for="formations">Secteur de formations: </label>
-                <select if="formations" :items="secteurFormations" label="Secteur formations" v-model="choixSecteurFormation">
+                <select class="custom-select" if="formations" :items="secteurFormations" label="Secteur formations" v-model="choixSecteurFormation">
                     <option v-for="(secteur,index) in secteurFormations" :key="index" :value="secteur">{{secteur}}</option>
                 </select>
             </div>
             <div class="input-block">
-                <button @click="addData()">Ajouter les données</button>
+                <button class="btn btn-primary" @click="addData()">Ajouter les données</button>
             </div>
             <div class="input-block">
-                <button @click="reset()">Remise à zéro</button>
+                <button class="btn btn-info" @click="reset()">Remise à zéro</button>
             </div>
             <div  v-if="chartData.rows.length >0">
                 <ve-histogram  :data="chartData" :settings="chartSettings"></ve-histogram>
