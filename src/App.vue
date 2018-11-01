@@ -21,6 +21,9 @@
                     <li class="nav-item">
                         <router-link class="nav-link" to="/Evolution">Evolution</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/Profil">Profil</router-link>
+                    </li>
                 </ul>
             </div>
 

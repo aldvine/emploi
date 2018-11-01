@@ -5,6 +5,7 @@ import Domaines from './views/Domaines.vue'
 import Evolution from './views/Evolution.vue'
 import ComparaisonOffre from './views/ComparaisonOffre.vue'
 import ComparaisonDemande from './views/ComparaisonDemande.vue'
+import Profil from './views/Profil.vue'
 // ne pas oublier les vues
 Vue.use(Router)
 
@@ -44,6 +45,13 @@ export default new Router({
       name: 'ComparaisonDemande',
 
       component: ComparaisonDemande
+    }
+,
+    {
+      path: '/Profil',
+      name: 'Profil',
+
+      component: Profil
     }
   ]
 })
