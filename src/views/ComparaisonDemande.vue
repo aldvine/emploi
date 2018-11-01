@@ -73,8 +73,8 @@ export default {
 
       this.demandesJson.forEach(element => {
           if(element['Periode'] >= "2015T1"){
-            tabDemande1[element['Periode']] = element[this.choixRegionDemandes1];
-            tabDemande2[element['Periode']] = element[this.choixRegionDemandes2];
+            tabDemande1[element['Periode']] = Number(element[this.choixRegionDemandes1].split(" ").join(""));
+            tabDemande2[element['Periode']] = Number(element[this.choixRegionDemandes2].split(" ").join(""));
           }
       });
 
