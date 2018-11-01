@@ -4,18 +4,25 @@
         <h2>Recherche d'offre par profil</h2>
 
         <div class="input-block">
-            <label for="choixDiplome">Indiquer votre dernier diplome ou fomation : </label>
-            <select v-model="diplome">
-                <option v-for="diplome in diplomes" v-bind:value="diplome">
+            <label for="choixDiplome">Indiquer vos dernier diplômes ou fomations : </label>
+            <select class="custom-select" v-model="diplome">
+                <option :key="diplome" v-for="diplome in diplomes" v-bind:value="diplome">
                     {{ diplome }}
+                </option>
+            </select>
+        </div>
+        <div class="input-block">
+            <label for="choixDiplome">Indiquer vos expériences</label>
+            <select class="custom-select" v-model="diplome">
+                <option :key="exp" v-for="exp in expe" v-bind:value="exp">
+                    {{ exp }}
                 </option>
             </select>
         </div>
 
         <div class="input-block">
-            <label for="choixVille">Choisir un secteur de recherche : </label>
-            <select v-model="region">
-                <option selected>Choisir une region</option>
+            <label for="choixVille">Choisir une zone de recherche : </label>
+            <select  class="custom-select" v-model="region">
                 <option>Nantes</option>
             </select>
         </div>
@@ -51,6 +58,12 @@ export default {
             "BTS Informatique",
             "Master MIAGE",
             "ASCA - Formation Management"
+        ],
+        expe: [
+            "Développeur",
+            "Serveur",
+            "Manager",
+            "Cuisinier"
         ]
     };
   },
