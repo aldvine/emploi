@@ -37,7 +37,7 @@
         </div>
 
         <span>Offre(s) :</span><br>
-        <div  :key="offre" v-for="offre in offres" v-bind:value="offre">
+        <div v-for="offre in offres" v-bind:value="offre">
             <span>{{ offre }}</span><br>
         </div>
     </div>

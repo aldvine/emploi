@@ -73,8 +73,8 @@ export default {
 
       this.demandesJson.forEach(element => {
           if(element['Periode'] >= "2015T1"){
-            tabDemande1[element['Periode']] = Number(element[this.choixRegionDemandes1].replace(/\s/g, ""));
-            tabDemande2[element['Periode']] = Number(element[this.choixRegionDemandes2].replace(/\s/g, ""));
+            tabDemande1[element['Periode']] = element[this.choixRegionDemandes1];
+            tabDemande2[element['Periode']] = element[this.choixRegionDemandes2];
           }
       });
 
@@ -82,8 +82,8 @@ export default {
       for (const key in tabDemande1) {
         this.chartData.rows.push({
             dateRegion : key,
-            demandes1: tabDemande1[key],
-            demandes2: tabDemande2[key]
+            demandes1: tabDemande1[key].toString(),
+            demandes2: tabDemande2[key].toString()
         });
       }
     },
