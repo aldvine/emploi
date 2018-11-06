@@ -1,11 +1,11 @@
 # emploi
 
-## Infos sur le proket
+## Infos sur le projet
 Pour lancer l'application, il faut utiliser un serveur web.
-Les fichiers de l'application compilés se situent dans le dossier /docs 
+Les fichiers de l'application compilés se situent dans le dossier /docs .
 
-Les fichiers sources de l'application se situent dans le dossier /src
-Les différents fichiers de données (JSON, CSV EXCEL) sont dans /src/assets/datas
+Les fichiers sources de l'application se situent dans le dossier /src .
+Les différents fichiers de données (JSON, CSV EXCEL) sont dans /src/assets/datas .
 
 
 ### Prérequis pour le développement 
