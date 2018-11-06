@@ -1,8 +1,16 @@
-# enedis
+# emploi
 
 ## Project setup
+Pour lancer l'application, il faut utiliser un serveur web.
+Les fichiers de l'application compilés se situent dans /application
 
-### install vue-cli 3 avant tout
+
+Prérequis pour le développement 
+npm
+node.js
+vue-cli 3
+
+### installation de vue-cli 3
 ```
 npm install -g vue-cli
 ```
@@ -12,7 +20,8 @@ npm install -g vue-cli
 vue -V 
 ```
 
-### installation des composant js
+### installation des dépendances
+```
 npm install
 ```
 
