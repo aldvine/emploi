@@ -2,7 +2,7 @@
 
 ## Project setup
 Pour lancer l'application, il faut utiliser un serveur web.
-Les fichiers de l'application compilés se situent dans /application
+Les fichiers de l'application compilés se situent dans /docs
 
 
 Prérequis pour le développement 
